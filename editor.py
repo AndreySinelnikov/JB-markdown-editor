@@ -7,7 +7,7 @@ def plain():
 def header():
     level = input("- Level:")
     if level in "123456":
-        return f"{'#' * int(level)} {get_text()}\n"  # \n так как "should switch to a new line automatically"
+        return f"{'#' * int(level)} {get_text()}\n"
     else:
         print("The level should be within the range of 1 to 6")
 
@@ -70,10 +70,12 @@ def main():
             print("Available formatters:", ' '.join(formatters))
             print("Available commands: ", ' '.join(commands))
         elif user_choice == "!done":
+            file = open("output.md", "w")
+            file.write(result)
+            file.close()
             break
         elif user_choice not in formatters:
             print("Unknown formatter or command. Please try again.")
 
 if __name__ == "__main__":
     main()
-
