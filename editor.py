@@ -1,4 +1,3 @@
-# write your code here
 def get_text():
     return input("Text:")
 
@@ -30,13 +29,35 @@ def link():
 def new_line():
     return "\n"
 
+def create_list(ordered=False):
+    rows = 0
+    text = ""
+
+    while rows < 1:
+        rows = int(input("Number of rows: "))
+        if rows < 1:
+            print("The number of rows should be greater than zero")
+
+        for i in range(1, rows + 1):
+            row = input(f"Row #{i}: ")
+
+            if ordered:
+                text += f"{i}. {row}\n"
+            else:
+                text += f"* {row}\n"
+
+    return text
+
+def ordered_list():
+    return create_list(ordered=True)
 
 def main():
     result = ""
 
     formatters = {"plain": plain, "header": header, "bold": bold,
                   "italic": italic, "inline-code": inline_code, "link": link,
-                  "new-line": new_line}
+                  "line-break": new_line, "ordered-list": ordered_list,
+                  "unordered-list": create_list}
 
     commands = ("!help", "!done")
 
@@ -55,3 +76,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
